@@ -15,24 +15,24 @@ public class BookController {
     @Autowired
     private BookRepository bookRepository;
 
-    @GetMapping(path = "/books")
+    @GetMapping(path = "/get-books")
     public List<Book> getAllBooks(){
         return bookRepository.findAll();
     }
 
-    @PostMapping(path = "/books")
+    @PostMapping(path = "/add-book")
     public Book addBook(@RequestBody Book book){
         return bookRepository.save(book);
     }
 
-    @GetMapping("/books/{id}")
+    @GetMapping("/get-book/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable Long id) {
         Book book = bookRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Book does'nt exist with id :" + id));
         return ResponseEntity.ok(book);
     }
 
-    @PutMapping("/books/{id}")
+    @PutMapping("/add-book/{id}")
     public ResponseEntity<Book> updateEmployee(@PathVariable Long id, @RequestBody Book bookDetails){
         Book book = bookRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Book does'nt exist with id :" + id));
@@ -45,7 +45,7 @@ public class BookController {
         return ResponseEntity.ok(updatedBook);
     }
 
-    @DeleteMapping("/books/{id}")
+    @DeleteMapping("/delete-book/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id){
         Book book = bookRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Book does'nt exist with id :" + id));
